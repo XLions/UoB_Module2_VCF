@@ -23,8 +23,7 @@ Group 13, **Task E - Delly 3**, Module 2 Genomics & Next Generation Sequencing G
 ```bash
 UoB_Module2_VCF/
 ├── Data/                   # Input data
-│   ├── Homo_sapiens.GRCh38.114.chr.gtf.gz
-│   ├── gencode.v49.chr_patch_hapl_scaff.annotation.gff3.gz
+│   ├── GenomeFileLink.md   # Links of Genome file involved
 │   ├── VCF_SplitedDetailedLongerDataFrame.RDS
 │   ├── vcf.RDS
 │   └── DellyVariation.vcf  # Example VCF file
