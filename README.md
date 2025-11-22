@@ -1,5 +1,5 @@
 # VCF Trio Challenges
-Group 13, **Task E - Delly 3**, Module 2 Genomics & Next Generation Sequencing Group Task, *MSc Bioinfomatics, University of Birmingham*. The task is provided by Dr.Deena.
+Group 13, **Task E - Delly 3**, Module 2 Genomics & Next Generation Sequencing Group Task, *MSc Bioinfomatics, University of Birmingham*. The task is provided by [Dr.DeenaGendoo](https://github.com/DGendoo).
 ## Task Description
 <ol>
 <li>Summarize the various combination of variants, their location, type and function.</li>
