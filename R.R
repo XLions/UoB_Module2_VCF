@@ -255,8 +255,8 @@ for(i in 1:nrow(vcf_meta_plot)){
 #B.确定父母样本 Identifying Parental Samples
 #目标：确认孩子对应的样本
 #Goal: Confirm samples corresponding to child
-#通过每一个变异来计算可能的情况
-#Calculate possible scenarios through each mutation
+#1.通过每一个变异来计算可能的情况
+#1.Calculate possible scenarios through each mutation
 {
   #1.建立函数基于表型寻找可能的小孩
   #1.Define function to identify potential child based on genotype
@@ -369,6 +369,33 @@ for(i in 1:nrow(vcf_meta_plot)){
     coord_flip()
   ggsave('./Figs/B_FindChild/1.Sample_Freq.pdf',
          width = 8,height = 6)
+}
+#2.寻找De Novo突变 Find De Novo mutations
+{
+  #没有任何被函数判断为小孩的对应突变为新发突变
+  #Variants that funtion finds no child is De Novo mutation
+  DeNovoMutation<-
+  Reduce(intersect,
+         list(NA19238=unique((FindChildFrame %>% 
+                                dplyr::filter(CHILD_CHECK_RESULT==F) %>% 
+                                dplyr::filter(SAMPLE=='NA19238'))$ID),
+              NA19239=unique((FindChildFrame %>% 
+                                dplyr::filter(CHILD_CHECK_RESULT==F) %>% 
+                                dplyr::filter(SAMPLE=='NA19239'))$ID),
+              NA19240=unique((FindChildFrame %>% 
+                                dplyr::filter(CHILD_CHECK_RESULT==F) %>% 
+                                dplyr::filter(SAMPLE=='NA19240'))$ID)))
+  print(DeNovoMutation)
+  # [1] "DEL00056339"
+  FindChildFrame[,1:4] %>% 
+    dplyr::filter(ID==DeNovoMutation)
+  #        CHROM      POS          ID SYMBOL
+  # 11775  chr12 33232234 DEL00056339   <NA>
+  # 117751 chr12 33232234 DEL00056339   <NA>
+  # 117752 chr12 33232234 DEL00056339   <NA>
+  write.csv(FindChildFrame[,1:4] %>% 
+              dplyr::filter(ID==DeNovoMutation),
+            './Figs/B_FindChild/2.DeNovoMutations.csv')
 }
 
 #C.确定感兴趣的基因 Identify genes of interest
@@ -597,19 +624,5 @@ for(i in 1:nrow(vcf_meta_plot)){
     )
   ggsave('4.KEGG_bubble.pdf',KEGG_Plot,width = 10,height=6)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
