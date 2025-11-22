@@ -5,14 +5,12 @@ rm(list = ls());gc()
 
 #加载R包
 #Load R Packages
-library(vcfR)
 library(stringr)
 library(progress)
 library(tidyverse)
-library(biomaRt)
 library(ggrepel)
 library(RCircos)
-library("rtracklayer")
+library(rtracklayer)
 library(dplyr)
 library(ggplot2)
 data("UCSC.HG38.Human.CytoBandIdeogram")
@@ -624,5 +622,7 @@ for(i in 1:nrow(vcf_meta_plot)){
     )
   ggsave('4.KEGG_bubble.pdf',KEGG_Plot,width = 10,height=6)
 }
+
+
 
 
